@@ -6,9 +6,9 @@ import 'services/activation_service.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final service = ActivationService();
-  final savedKey = await service.getKey();
+  final isActivated = await service.isActivated();
 
-  runApp(MyChildApp(isActivated: savedKey != null));
+  runApp(MyChildApp(isActivated: isActivated));
 }
 
 class MyChildApp extends StatelessWidget {
