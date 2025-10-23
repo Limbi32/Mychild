@@ -1,49 +1,32 @@
 🔑 CLÉS DE TEST DISPONIBLES
 ============================
 
-Utilisez une de c
-tionra de la généla fin. Attendre érer
-  3 génés àclde ombre ir le nChois
-  2. ur ⚙️liquer s :
-  1. C'application00
+Voici les clés de test actuellement disponibles dans la base de données :
 
-Via ls.py 10keynerate_test_thon gepy:
-  on yth
+1. MYCHILD-173529-173529
+2. MYCHILD-173530-173542
+3. MYCHILD-173531-173555
+4. MYCHILD-173532-173568
+5. MYCHILD-173533-173581
+6. MYCHILD-173534-173594
+7. MYCHILD-173535-173607
+8. MYCHILD-173536-173620
+9. MYCHILD-173537-173633
+10. MYCHILD-173538-173646
 
-Via P===============================S :
- DE CLÉÉRER PLUS POUR GÉN
+============================
+COMMENT TESTER :
+===============
 
-💡" (⚙️)'activationliser lRéinitiaouton "ilisez le butester,  retPour
--  la basepprimée de est su, la clés utiliséeUne foi FOIS
--  SEULEe qu'UNEtilisétre ué ne peut êque cl
+1. Lancez l'application : flutter run -d windows
+2. Entrez une des clés ci-dessus dans le champ d'activation
+3. Cliquez sur "Valider"
+4. L'application devrait s'activer et vous diriger vers le menu principal
 
-- Cha==============NT :
-IMPORTAé !
+⚠️ IMPORTANT :
+- Chaque clé ne peut être utilisée qu'une seule fois
+- Une fois utilisée, elle est supprimée de la base de données
+- Pour générer plus de clés, utilisez le bouton ⚙️ dans l'application
 
-⚠️ activre s devriez êt
-
-4. ✅ Vou"Valider"r sur ue
-3. Cliqus
-clés ci-desses er une dntr
-2. Es
-windowtter run -d on :
-   fluplicati l'ap. Lancer=====
-
-1============TER :
-== COMMENT TES
-🧪.db
-ivation_keys: assets/actichier 📁 Fe : 50
-bas la és danstal de cl1996
-
-📊 ToLD-244563-710. MYCHI711983
-1D-244562-
-9. MYCHIL0561-71197MYCHILD-244. 11957
-8-7HILD-244560MYC
-7. 59-7119442445CHILD-6. MY1
-19358-71MYCHILD-2445
-5. 4557-711918YCHILD-245
-4. M-711904556CHILD-243. MY
-555-711892244D-9
-2. MYCHIL18744554-71HILD-2 :
-
-1. MYCon My Childlication de l'app'activatiester lr tés poues cl
+💡 Pour réinitialiser l'activation (pour tests) :
+- Utilisez le bouton ⚙️ dans l'application et sélectionnez "Réinitialiser l'activation"

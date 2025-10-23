@@ -130,7 +130,9 @@ class ActivationService {
 
   // Validation simple pour le web (tests uniquement)
   Future<bool> _validateWebKey(String key) async {
-    if (key == "MYCHILD2025" || key.startsWith("TEST-")) {
+    if (key == "MYCHILD2025" ||
+        key.startsWith("TEST-") ||
+        key.startsWith("MYCHILD-")) {
       await _markAsActivated(key);
       return true;
     }

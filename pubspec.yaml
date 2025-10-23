@@ -30,6 +30,9 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
 
+  # Pour un style de police enfantin
+  google_fonts: ^6.2.1
+
 flutter:
   uses-material-design: true
 
@@ -38,5 +41,17 @@ flutter:
     - assets/logo.jpeg
     - assets/france.png
     - assets/anglais.jpeg
-    # Base de données avec les clés d'activation
-    - assets/activation_keys.db
+    - assets/accueil.jpeg
+    - assets/anglais.jpeg
+    - assets/france.png
+    - assets/logo.jpeg
+    - assets/logo.jpg
+    - assets/menu.jpeg
+    - assets/recto.jpeg
+    - assets/retouch_2025101508330906.jpg
+    - assets/retouch_2025101508335673.jpg
+    - assets/retouch_2025101508351271.jpg
+    - assets/retouch_2025101508360788.jpg
+    - assets/moralite/
+    # Base de données avec les clés d'activation (optionnel pour le web)
+    # - assets/activation_keys.db

@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF007BFF), // Bleu fond principal
+      backgroundColor: const Color(0xFF5DADE2), // Même dégradé que welcome screen
       body: SafeArea(
         child: Column(
           children: [
@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MoralityScreen(),
+                              builder: (context) => const MoralityLoadingScreen(),
                             ),
                           );
                         },
