@@ -50,7 +50,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset('assets/images/child_globe.png', height: 220),
+                Image.asset('assets/logo.jpg', height: 220),
                 const SizedBox(height: 30),
                 const Text(
                   'My Child',

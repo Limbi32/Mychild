@@ -14,8 +14,11 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0xFF007BFF), // Bleu fond principal
       body: SafeArea(
         child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.spaceBetween, // ✅ espace bien réparti
           children: [
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
+
             const Text(
               "Menu principal",
               style: TextStyle(
@@ -25,97 +28,92 @@ class HomeScreen extends StatelessWidget {
                 shadows: [Shadow(color: Colors.black26, blurRadius: 3)],
               ),
             ),
-            const SizedBox(height: 30),
 
-            // ✅ Liste des boutons de menu
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Column(
-                    children: [
-                      _menuButton(
+            // ✅ Boutons ajustés sans scroll
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  _menuButton(
+                    context,
+                    icon: "✍️",
+                    label: "Alphabet",
+                    color: Colors.white,
+                    onTap: () {
+                      Navigator.push(
                         context,
-                        icon: "✍️",
-                        label: "Alphabet",
-                        color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AlphabetScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 15),
-                      _menuButton(
-                        context,
-                        icon: "🔊",
-                        label: "Prononciation",
-                        color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PronunciationScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 15),
-                      _menuButton(
-                        context,
-                        icon: "🤟",
-                        label: "Langage des signes",
-                        color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignLanguageScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 15),
-                      _menuButton(
-                        context,
-                        icon: "📖",
-                        label: "Contes & moralité",
-                        color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MoralityScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      const SizedBox(height: 15),
-                      _menuButton(
-                        context,
-                        icon: "⚙️",
-                        label: "Paramètres",
-                        color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SettingsScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                        MaterialPageRoute(
+                          builder: (context) => const AlphabetScreen(),
+                        ),
+                      );
+                    },
                   ),
-                ),
+                  const SizedBox(height: 12),
+                  _menuButton(
+                    context,
+                    icon: "🔊",
+                    label: "Prononciation",
+                    color: Colors.white,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PronunciationScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  _menuButton(
+                    context,
+                    icon: "🤟",
+                    label: "Langage des signes",
+                    color: Colors.white,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SignLanguageScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  _menuButton(
+                    context,
+                    icon: "📖",
+                    label: "Contes & moralité",
+                    color: Colors.white,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MoralityScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 12),
+                  _menuButton(
+                    context,
+                    icon: "⚙️",
+                    label: "Paramètres",
+                    color: Colors.white,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SettingsScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
 
             const Padding(
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.only(bottom: 20, left: 20, right: 20),
               child: Text(
                 "Bienvenue dans l’univers éducatif universel 🌍",
                 textAlign: TextAlign.center,
@@ -128,7 +126,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // Widget pour chaque bouton de menu
+  // ✅ Bouton réutilisable
   Widget _menuButton(
     BuildContext context, {
     required String icon,
@@ -138,30 +136,30 @@ class HomeScreen extends StatelessWidget {
   }) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(15),
       child: Container(
-        height: 75,
+        height: 60, // ✅ hauteur réduite pour tout afficher
         decoration: BoxDecoration(
           color: color,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
-              blurRadius: 4,
-              offset: const Offset(2, 3),
+              blurRadius: 3,
+              offset: const Offset(2, 2),
             ),
           ],
         ),
         child: Row(
           children: [
             const SizedBox(width: 20),
-            Text(icon, style: const TextStyle(fontSize: 28)),
+            Text(icon, style: const TextStyle(fontSize: 24)),
             const SizedBox(width: 20),
             Text(
               label,
               style: const TextStyle(
                 color: Color(0xFF007BFF),
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w600,
               ),
             ),
