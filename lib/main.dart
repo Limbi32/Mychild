@@ -79,7 +79,7 @@ class MyChildApp extends StatelessWidget {
         ),
         
         // Card Theme
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: AppColors.white,
           elevation: 5,
           shape: RoundedRectangleBorder(
