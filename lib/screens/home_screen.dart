@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'alphabet_screen.dart';
 import 'pronunciation_screen.dart';
 import 'sign_language_screen.dart';
@@ -16,9 +17,9 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 40),
-            const Text(
-              "Menu principal",
-              style: TextStyle(
+            Text(
+              "home_title".tr,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -37,76 +38,41 @@ class HomeScreen extends StatelessWidget {
                       _menuButton(
                         context,
                         icon: "✍️",
-                        label: "Alphabet",
+                        label: "alphabet".tr,
                         color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AlphabetScreen(),
-                            ),
-                          );
-                        },
+                        onTap: () => Get.to(() => const AlphabetScreen()),
                       ),
                       const SizedBox(height: 15),
                       _menuButton(
                         context,
                         icon: "🔊",
-                        label: "Prononciation",
+                        label: "numbers".tr,
                         color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PronunciationScreen(),
-                            ),
-                          );
-                        },
+                        onTap: () => Get.to(() => const PronunciationScreen()),
                       ),
                       const SizedBox(height: 15),
                       _menuButton(
                         context,
                         icon: "🤟",
-                        label: "Langage des signes",
+                        label: "signs".tr,
                         color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignLanguageScreen(),
-                            ),
-                          );
-                        },
+                        onTap: () => Get.to(() => const SignLanguageScreen()),
                       ),
                       const SizedBox(height: 15),
                       _menuButton(
                         context,
                         icon: "📖",
-                        label: "Contes & moralité",
+                        label: "morality".tr,
                         color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const MoralityLoadingScreen(),
-                            ),
-                          );
-                        },
+                        onTap: () => Get.to(() => const MoralityLoadingScreen()),
                       ),
                       const SizedBox(height: 15),
                       _menuButton(
                         context,
                         icon: "⚙️",
-                        label: "Paramètres",
+                        label: "settings".tr,
                         color: Colors.white,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SettingsScreen(),
-                            ),
-                          );
-                        },
+                        onTap: () => Get.to(() => const SettingsScreen()),
                       ),
                     ],
                   ),

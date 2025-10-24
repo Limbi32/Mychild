@@ -33,6 +33,29 @@ dev_dependencies:
 
   # Pour un style de police enfantin
   google_fonts: ^6.2.1
+  
+  # Pour générer les icônes de l'application
+  flutter_launcher_icons: ^0.13.1
+  
+  # Pour générer le splash screen
+  flutter_native_splash: ^2.3.10
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/logo.jpeg"
+  adaptive_icon_background: "#3498DB"
+  adaptive_icon_foreground: "assets/logo.jpeg"
+
+flutter_native_splash:
+  color: "#3498DB"
+  image: assets/logo.jpeg
+  android: true
+  ios: true
+  web: true
+  android_12:
+    color: "#3498DB"
+    image: assets/logo.jpeg
 
 flutter:
   uses-material-design: true

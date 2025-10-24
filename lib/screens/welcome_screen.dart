@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../services/activation_service.dart';
 import 'home_screen.dart';
 import 'key_generator_screen.dart';
@@ -21,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     String enteredKey = keyController.text.trim();
 
     if (enteredKey.isEmpty) {
-      _showError('Veuillez entrer une clé d\'activation');
+      _showError('enter_key'.tr);
       return;
     }
 
@@ -33,16 +34,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       if (!mounted) return;
 
       if (isValid) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-        );
+        Get.off(() => const HomeScreen());
       } else {
-        _showError('Clé invalide ou déjà utilisée');
+        _showError('invalid_key'.tr);
       }
     } catch (e) {
       if (!mounted) return;
-      _showError('Erreur lors de la validation: $e');
+      _showError('${'validation_error'.tr}: $e');
     } finally {
       if (mounted) {
         setState(() => _isValidating = false);
@@ -120,9 +118,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   const SizedBox(height: 25),
                   
                   // Learn, Speak & Grow
-                  const Text(
-                    'Learn, Speak & Grow',
-                    style: TextStyle(
+                  Text(
+                    'learn_speak_grow'.tr,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
@@ -134,20 +132,22 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   
                   // Bouton Français
                   _buildLanguageButton(
-                    'Français',
+                    'french'.tr,
                     'assets/france.png',
                     const Color(0xFF3498DB),
                     _selectedLanguage == 'Français',
+                    const Locale('fr', 'FR'),
                   ),
                   
                   const SizedBox(height: 12),
                   
                   // Bouton English
                   _buildLanguageButton(
-                    'English',
+                    'english'.tr,
                     'assets/anglais.jpeg',
                     const Color(0xFFE67E22),
                     _selectedLanguage == 'English',
+                    const Locale('en', 'US'),
                   ),
                   
                   const SizedBox(height: 35),
@@ -186,9 +186,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Text(
-                              'Activer avec ma clé',
-                              style: TextStyle(
+                            Text(
+                              'activate_with_key'.tr,
+                              style: const TextStyle(
                                 color: Color(0xFF3498DB),
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -272,9 +272,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                             color: Colors.white,
                                           ),
                                         )
-                                      : const Text(
-                                          'Valider',
-                                          style: TextStyle(
+                                      : Text(
+                                          'validate'.tr,
+                                          style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -292,10 +292,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   const SizedBox(height: 30),
                   
                   // Texte final
-                  const Text(
-                    'Clé valide à vie',
+                  Text(
+                    'key_valid_lifetime'.tr,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -303,10 +303,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Text(
-                    'Aucun abonnement requis',
+                  Text(
+                    'no_subscription'.tr,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -329,9 +329,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     String flagPath,
     Color color,
     bool isSelected,
+    Locale locale,
   ) {
     return InkWell(
       onTap: () {
+        Get.updateLocale(locale);
         setState(() {
           _selectedLanguage = text;
         });
