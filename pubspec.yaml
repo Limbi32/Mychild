@@ -24,6 +24,7 @@ dependencies:
 
   # Pour navigation et gestion simple des routes
   get: ^4.6.6
+  speech_to_text: ^7.3.0
 
 dev_dependencies:
   flutter_test:
@@ -53,5 +54,6 @@ flutter:
     - assets/retouch_2025101508351271.jpg
     - assets/retouch_2025101508360788.jpg
     - assets/moralite/
+    - assets/signs/
     # Base de données avec les clés d'activation (optionnel pour le web)
     # - assets/activation_keys.db
