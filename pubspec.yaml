@@ -1,0 +1,59 @@
+name: mychild
+description: "My Child – Learn, Speak & Grow (App éducative)"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Icônes Apple
+  cupertino_icons: ^1.0.8
+
+  # Text-to-speech (voix)
+  flutter_tts: ^4.0.2
+
+  # Pour stockage local clé d'activation
+  shared_preferences: ^2.2.2
+  sqflite: ^2.3.3
+  path_provider: ^2.1.2
+
+  # Pour navigation et gestion simple des routes
+  get: ^4.6.6
+  speech_to_text: ^7.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+  # Pour un style de police enfantin
+  google_fonts: ^6.2.1
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/logo.jpg
+    - assets/logo.jpeg
+    - assets/france.png
+    - assets/anglais.jpeg
+    - assets/accueil.jpeg
+    - assets/anglais.jpeg
+    - assets/france.png
+    - assets/logo.jpeg
+    - assets/logo.jpg
+    - assets/menu.jpeg
+    - assets/recto.jpeg
+    - assets/retouch_2025101508330906.jpg
+    - assets/retouch_2025101508335673.jpg
+    - assets/retouch_2025101508351271.jpg
+    - assets/retouch_2025101508360788.jpg
+    - assets/moralite/
+    - assets/signs/
+    # Base de données avec les clés d'activation (optionnel pour le web)
+    # - assets/activation_keys.db
