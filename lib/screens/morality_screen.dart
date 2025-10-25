@@ -126,8 +126,6 @@ class MoralityScreen extends StatefulWidget {
 }
 
 class _MoralityScreenState extends State<MoralityScreen> {
-  bool _hasStarted = false;
-
   final List<MoralityItem> _moralityItems = [
     const MoralityItem(
       title: "Le Lion et la Petite Souris",
@@ -143,6 +141,36 @@ class _MoralityScreenState extends State<MoralityScreen> {
       title: "Le Singe et la Lune",
       description: "Une nuit, un singe vit la lune se refléter dans l'eau d'un puits. Pensant qu'elle était tombée, il appela tous les animaux pour la sauver. Ensemble, ils formèrent une chaîne pour la repêcher, mais en tirant, ils glissèrent tous dans le puits. Quand ils remontèrent trempés, la lune brillait encore dans le ciel. Ils comprirent alors que les apparences trompent, et qu'il faut réfléchir avant d'agir.",
       imagePath: "assets/moralite/4.jpg",
+    ),
+    const MoralityItem(
+      title: "Le Colibri et le Feu",
+      description: "Il était une fois, dans une grande forêt, un terrible feu se déclara. Les flammes dévoraient les arbres, les animaux fuyaient dans tous les sens, et la fumée assombrissait le ciel. Tous les animaux se réunirent loin du danger, impuissants. Sauf un tout petit colibri. Lui, il volait jusqu'à la rivière, prenait une goutte d'eau dans son bec, et la jetait sur le feu. Les autres animaux le regardaient, étonnés : « Colibri, tu es minuscule! Tu ne peux pas éteindre ce feu avec une goutte d'eau! » Le colibri répondit calmement : « Peut-être. Mais je fais ma part. » Touchés par son courage, les autres animaux commencèrent à l'aider : les éléphants apportèrent de l'eau avec leurs trompes, les singes creusèrent des tranchées, les oiseaux volèrent en groupe. Petit à petit, le feu fut maîtrisé. Même les plus petits gestes peuvent inspirer de grands changements. Il suffit d'oser commencer.",
+      imagePath: "assets/moralite/5.jpg",
+    ),
+    const MoralityItem(
+      title: "Le Renard et la Pierre Magique",
+      description: "Dans un village entouré de montagnes, vivait un jeune renard nommé Kimo. Curieux et malin, il adorait explorer les bois. Un jour, il découvrit une pierre brillante au fond d'une grotte. Elle changeait de couleur selon ses émotions : rouge quand il était en colère, bleue quand il était triste, et dorée quand il était heureux. Kimo pensa : « Si je garde cette pierre, je serai toujours joyeux. » Mais très vite, il réalisa que la pierre ne brillait en doré que lorsqu'il aidait les autres. Alors, il commença à partager : il aida la tortue à traverser la rivière, consola le hibou qui avait perdu ses lunettes, et même offrit un abri au hérisson pendant la pluie. Chaque fois qu'il faisait une bonne action, la pierre brillait plus fort. Les animaux du village vinrent le voir, et bientôt, Kimo n'avait plus besoin de la pierre : son cœur brillait tout seul. La vraie magie ne vient pas des objets, mais des gestes qu'on fait avec le cœur.",
+      imagePath: "assets/moralite/6.jpg",
+    ),
+    const MoralityItem(
+      title: "Le Papillon et la Goutte de Rosée",
+      description: "Il était une fois, dans un jardin baigné par la première lumière du matin, un magnifique papillon nommé Céleste. Ses ailes étaient d'un bleu et d'un or éclatants. Il se posa délicatement sur la feuille d'une rose et remarqua une petite goutte de rosée, parfaitement ronde et brillante. « Que tu es minuscule ! » s'exclama Céleste, se pavanant. « Regarde-moi ! Je peux voler au-dessus des plus hautes fleurs et danser avec le vent. Mon existence est une aventure sans fin. » La goutte de rosée, sans bouger, répondit d'une voix cristalline : « C'est vrai, tes voyages sont grandioses, papillon. Mais regarde bien en moi. » Intrigué, Céleste pencha sa tête. Dans la petite sphère d'eau, il vit son propre reflet, mais aussi le jardin entier : la rose écarlate, l'herbe verte, le ciel pâle et même un rayon de soleil. Tout l'univers du jardin était contenu et reflété, plus beau encore, dans cette minuscule goutte. La goutte sourit : « Tu voyages partout pour voir le monde. Moi, je reste ici, mais le monde entier vient à moi. La grandeur ne se mesure pas toujours par la taille ou la distance parcourue, mais par la profondeur de ce que l'on sait contenir. » Céleste resta silencieux, méditant sur la sagesse de cette petite goutte. Il comprit qu'il y a de la beauté et de la richesse dans l'immobilité et la contemplation, tout autant que dans le mouvement et l'aventure.",
+      imagePath: "assets/moralite/7.jpg",
+    ),
+    const MoralityItem(
+      title: "Le Vieux Saule et le Petit Ruisseau",
+      description: "Au bord d'une prairie verdoyante se tenait un vieux saule pleureur, les branches lourdes et pendantes comme de longs cheveux verts. Il avait vu passer des siècles et ses racines profondes s'enfonçaient dans la terre humide, juste à côté d'un petit ruisseau. Le ruisseau, nommé Vif-Argent, était jeune, rapide et incroyablement impatient. Chaque jour, il grondait contre le saule : « Tu es si lent, si statique ! Regarde-moi ! Je cours, je bondis, je traverse la forêt et je me jette dans la rivière ! J'ai tellement de choses à voir et si peu de temps ! » Le saule souriait avec la sagesse des choses anciennes. « Calme-toi, petit Vif-Argent. Où cours-tu avec tant de hâte ? » « Vers l'océan, bien sûr ! C'est l'aventure ultime ! » répondit le ruisseau. Un jour, une grande sécheresse s'abattit sur la région. Le ruisseau Vif-Argent, qui s'était tellement pressé, commença à faiblir. Il devint un simple filet d'eau, et bientôt, il ne fut plus qu'une flaque boueuse. « Vieux saule, » murmura Vif-Argent, « je meurs. Je n'atteindrai jamais l'océan. » Le saule pencha l'une de ses branches et fit doucement de l'ombre au filet d'eau restant. « N'aie crainte, petit ami. Mes racines sont profondes. Elles puisent l'eau loin sous la terre. » Puis, le saule laissa échapper de ses feuilles une infime quantité de cette eau stockée, juste assez pour maintenir Vif-Argent en vie, jusqu'à ce que la pluie revienne. Lorsque la pluie tomba enfin, Vif-Argent s'arrêta un instant près du saule. « Merci, cher ami. Je pensais que le voyage était la seule chose qui comptait. Mais sans tes racines pour te garder ici, je n'aurais même pas pu continuer le mien. » Le vieux saule sourit dans la brise. « Le monde a besoin de ceux qui courent et de ceux qui restent immobiles. L'action est nécessaire, mais la patience et la profondeur le sont tout autant. »",
+      imagePath: "assets/moralite/8.jpg",
+    ),
+    const MoralityItem(
+      title: "Sagesse et Citations",
+      description: "« La seule chose que je sais, c'est que je ne sais rien. » - Socrate. « L'imagination est plus importante que le savoir. » - Albert Einstein. « La vie, ce n'est pas d'attendre que les orages passent, c'est d'apprendre à danser sous la pluie. » - Sénèque. « Aimer, ce n'est pas se regarder l'un l'autre, c'est regarder ensemble dans la même direction. » - Antoine de Saint-Exupéry. « Choisissez un travail que vous aimez et vous n'aurez pas à travailler un seul jour de votre vie. » - Confucius. Mieux vaut prévenir que guérir. Qui sème le vent récolte la tempête. Après la pluie, le beau temps. L'argent est un bon serviteur, mais un mauvais maître. Un tiens vaut mieux que deux tu l'auras.",
+      imagePath: "assets/moralite/2.jpg",
+    ),
+    const MoralityItem(
+      title: "Leçons de Vie",
+      description: "L'imperfection est humaine. Acceptez vos erreurs et vos défauts. L'échec n'est pas l'opposé du succès, mais une étape nécessaire pour y arriver. Connais-toi toi-même. La quête de soi est le voyage d'une vie. Comprendre vos valeurs, vos forces et vos faiblesses est fondamental. La gratitude transforme. Se concentrer sur ce que l'on a, plutôt que sur ce qui nous manque, est la clé d'un bonheur durable. Le courage n'est pas l'absence de peur, mais la capacité d'agir malgré elle. L'instant présent est tout. Votre pouvoir réside uniquement dans le moment présent. C'est le seul moment où l'on peut agir. La constance est plus forte que la vitesse. Les petits efforts réguliers produisent des résultats bien plus grands. Les relations sont la richesse. L'amour, l'amitié et les liens familiaux sont la source la plus importante de bonheur. Le bonheur est un voyage, pas une destination. Il se trouve dans l'appréciation des petits moments de la vie quotidienne. Le changement est la seule constante. Accepter et s'adapter au changement est la clé de la sérénité.",
+      imagePath: "assets/moralite/2.jpg",
     ),
   ];
 
@@ -195,7 +223,7 @@ class _MoralityScreenState extends State<MoralityScreen> {
                     ),
                     title: Text(
                       currentItem.title,
-                      style: TextStyle(
+                      style: GoogleFonts.bubblegumSans(
                         fontSize: titleFontSize,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
@@ -238,7 +266,7 @@ class _MoralityScreenState extends State<MoralityScreen> {
                           ),
                           child: Text(
                             "${_currentIndex + 1}/${_moralityItems.length}",
-                            style: const TextStyle(
+                            style: GoogleFonts.bubblegumSans(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
@@ -289,13 +317,13 @@ class _MoralityScreenState extends State<MoralityScreen> {
                               children: [
                                 Text(
                                   _getBadgeEmoji(currentItem.title),
-                                  style: TextStyle(fontSize: isSmallScreen ? 12 : 14),
+                                  style: GoogleFonts.bubblegumSans(fontSize: isSmallScreen ? 12 : 14),
                                 ),
                                 const SizedBox(width: 4),
                                 Flexible(
                                   child: Text(
                                     _getBadgeText(currentItem.title),
-                                    style: TextStyle(
+                                    style: GoogleFonts.bubblegumSans(
                                       color: _getBadgeTextColor(currentItem.title),
                                       fontWeight: FontWeight.bold,
                                       fontSize: isSmallScreen ? 10 : 12,
@@ -312,7 +340,7 @@ class _MoralityScreenState extends State<MoralityScreen> {
                           // Texte avec meilleure typographie
                           RichText(
                             text: TextSpan(
-                              style: TextStyle(
+                              style: GoogleFonts.bubblegumSans(
                                 fontSize: bodyFontSize,
                                 color: Colors.black87,
                                 height: 1.6,
@@ -348,7 +376,7 @@ class _MoralityScreenState extends State<MoralityScreen> {
                                 Expanded(
                                   child: Text(
                                     _getLastSentence(currentItem.description),
-                                    style: TextStyle(
+                                    style: GoogleFonts.bubblegumSans(
                                       fontSize: isSmallScreen ? 12 : 14,
                                       fontWeight: FontWeight.bold,
                                       color: const Color(0xFF5DADE2),
@@ -471,9 +499,9 @@ class _MoralityScreenState extends State<MoralityScreen> {
                         const SizedBox(height: 30),
 
                         // Titre
-                        const Text(
+                        Text(
                           'Contes & Moralité',
-                          style: TextStyle(
+                          style: GoogleFonts.bubblegumSans(
                             color: Colors.white,
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -485,10 +513,10 @@ class _MoralityScreenState extends State<MoralityScreen> {
                         const SizedBox(height: 20),
 
                         // Description
-                        const Text(
+                        Text(
                           'Découvrez des histoires merveilleuses qui enseignent des leçons de vie précieuses pour les enfants.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.bubblegumSans(
                             color: Colors.white,
                             fontSize: 18,
                             height: 1.5,
@@ -505,7 +533,6 @@ class _MoralityScreenState extends State<MoralityScreen> {
                           isEnabled: true,
                           onTap: () {
                             setState(() {
-                              _hasStarted = true;
                               _currentIndex = 1; // Passer au premier conte
                             });
                           },
@@ -514,10 +541,10 @@ class _MoralityScreenState extends State<MoralityScreen> {
                         const SizedBox(height: 30),
 
                         // Texte d'encouragement
-                        const Text(
+                        Text(
                           'Chaque histoire apporte sagesse et joie 💫',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: GoogleFonts.bubblegumSans(
                             color: Colors.white70,
                             fontSize: 16,
                             fontStyle: FontStyle.italic,
@@ -566,11 +593,11 @@ class _MoralityScreenState extends State<MoralityScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(icon, style: const TextStyle(fontSize: 24)),
+              Text(icon, style: GoogleFonts.bubblegumSans(fontSize: 24)),
               const SizedBox(width: 12),
               Text(
                 label,
-                style: TextStyle(
+                style: GoogleFonts.bubblegumSans(
                   color: const Color(0xFF007BFF),
                   fontSize: fontSize,
                   fontWeight: FontWeight.w600,
@@ -603,7 +630,7 @@ class _MoralityScreenState extends State<MoralityScreen> {
       TextSpan(text: bodyText),
       TextSpan(
         text: lastSentence,
-        style: const TextStyle(fontWeight: FontWeight.bold),
+        style: GoogleFonts.bubblegumSans(fontWeight: FontWeight.bold),
       ),
     ];
   }

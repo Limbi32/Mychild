@@ -271,4 +271,69 @@ class ActivationService {
       rethrow;
     }
   }
+
+  // Importe les clés depuis le fichier CLES_TEST.txt
+  Future<void> importKeysFromAssets() async {
+    if (kIsWeb) {
+      print('⚠️ Import non supporté sur le web');
+      return;
+    }
+
+    try {
+      print('\n🔄 Importation des clés depuis assets/CLES_TEST.txt...');
+      
+      // Charge le fichier depuis les assets
+      final content = await rootBundle.loadString('assets/CLES_TEST.txt');
+      final lines = content.split('\n');
+      
+      final db = await database;
+      final timestamp = DateTime.now().millisecondsSinceEpoch;
+      
+      int imported = 0;
+      int skipped = 0;
+      
+      // Traite par batch de 1000 clés
+      for (int i = 0; i < lines.length; i += 1000) {
+        final batch = db.batch();
+        final endIndex = (i + 1000 > lines.length) ? lines.length : i + 1000;
+        
+        for (int j = i; j < endIndex; j++) {
+          final line = lines[j].trim();
+          
+          // Ignore les lignes vides et les commentaires
+          if (line.isEmpty || line.startsWith('#') || line.startsWith('=')) {
+            skipped++;
+            continue;
+          }
+          
+          // Vérifie le format XXXX-XXXX-XXXX-XXXX
+          if (RegExp(r'^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$').hasMatch(line)) {
+            batch.insert(
+              'activation_keys',
+              {
+                'key_value': line,
+                'created_at': timestamp,
+              },
+              conflictAlgorithm: ConflictAlgorithm.ignore, // Ignore les doublons
+            );
+            imported++;
+          } else {
+            skipped++;
+          }
+        }
+        
+        await batch.commit(noResult: true);
+        print('✅ $imported clés importées...');
+      }
+      
+      print('\n========================================');
+      print('✅ IMPORTATION TERMINÉE');
+      print('📊 $imported clés importées');
+      print('⏭️ $skipped lignes ignorées');
+      print('========================================\n');
+    } catch (e) {
+      print('❌ Erreur lors de l\'importation: $e');
+      rethrow;
+    }
+  }
 }

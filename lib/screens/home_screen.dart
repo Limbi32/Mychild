@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'alphabet_screen.dart';
 import 'pronunciation_screen.dart';
 import 'sign_language_screen.dart';
@@ -19,11 +20,11 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 40),
             Text(
               "home_title".tr,
-              style: const TextStyle(
+              style: GoogleFonts.bubblegumSans(
                 color: Colors.white,
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
-                shadows: [Shadow(color: Colors.black26, blurRadius: 3)],
+                shadows: const [Shadow(color: Colors.black26, blurRadius: 3)],
               ),
             ),
             const SizedBox(height: 30),
@@ -80,12 +81,12 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            const Padding(
-              padding: EdgeInsets.all(20),
+            Padding(
+              padding: const EdgeInsets.all(20),
               child: Text(
-                "Bienvenue dans l’univers éducatif universel 🌍",
+                "Bienvenue dans l'univers éducatif universel 🌍",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white70, fontSize: 16),
+                style: GoogleFonts.bubblegumSans(color: Colors.white70, fontSize: 16),
               ),
             ),
           ],
@@ -121,12 +122,12 @@ class HomeScreen extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(width: 20),
-            Text(icon, style: const TextStyle(fontSize: 28)),
+            Text(icon, style: GoogleFonts.bubblegumSans(fontSize: 28)),
             const SizedBox(width: 20),
             Text(
               label,
-              style: const TextStyle(
-                color: Color(0xFF007BFF),
+              style: GoogleFonts.bubblegumSans(
+                color: const Color(0xFF007BFF),
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
               ),

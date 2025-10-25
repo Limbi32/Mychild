@@ -107,10 +107,10 @@ class _AlphabetScreenState extends State<AlphabetScreen> {
                          icon: const Icon(Icons.arrow_back, color: Colors.white),
                          onPressed: () => Navigator.of(context).pop(),
                        ),
-                       const Expanded(
+                       Expanded(
                          child: Text(
                            "Module Alphabet",
-                           style: TextStyle(
+                           style: GoogleFonts.bubblegumSans(
                              color: Colors.white,
                              fontWeight: FontWeight.bold,
                              fontSize: 24,
@@ -282,7 +282,7 @@ class AlphabetLetter extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           letter,
-          style: const TextStyle(
+          style: GoogleFonts.bubblegumSans(
             fontSize: 40, // Grande taille de police
             fontWeight: FontWeight.w900,
             color: Color(0xFF1E3A8A), // Bleu sombre pour le texte

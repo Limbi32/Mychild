@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/asset_paths.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Sélecteur de langue réutilisable
 class LanguageSelector extends StatelessWidget {
@@ -91,7 +92,7 @@ class LanguageSelector extends StatelessWidget {
             // Texte
             Text(
               text,
-              style: const TextStyle(
+              style: GoogleFonts.bubblegumSans(
                 color: AppColors.white,
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
