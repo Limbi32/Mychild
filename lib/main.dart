@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/home_screen.dart';
 import 'services/activation_service.dart';
@@ -37,7 +38,18 @@ Future<void> _initServices() async {
   await Get.putAsync(() => SpeechRecognitionService().init());
   
   // Service d'activation (SQLite local)
-  Get.put(ActivationService());
+  final activationService = ActivationService();
+  Get.put(activationService);
+  
+  // Importer les clés depuis CLES_TEST.txt (TOUJOURS au démarrage)
+  try {
+    print('📥 Importation des clés depuis CLES_TEST.txt...');
+    await activationService.importKeysFromAssets();
+    final count = await activationService.getRemainingKeysCount();
+    print('✅ $count clés disponibles dans la base de données');
+  } catch (e) {
+    print('⚠️ Erreur lors de l\'importation des clés: $e');
+  }
 }
 
 class MyChildApp extends StatelessWidget {
@@ -58,12 +70,22 @@ class MyChildApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.primaryBlue,
         useMaterial3: true,
         
+        // Police globale - Bubblegum Sans (style enfantin)
+        textTheme: GoogleFonts.bubblegumSansTextTheme(
+          ThemeData.light().textTheme,
+        ),
+        
         // AppBar Theme
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           backgroundColor: AppColors.accentBlue,
           foregroundColor: AppColors.white,
           elevation: 0,
           centerTitle: true,
+          titleTextStyle: GoogleFonts.bubblegumSans(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: AppColors.white,
+          ),
         ),
         
         // Button Theme
@@ -75,11 +97,15 @@ class MyChildApp extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16),
             ),
+            textStyle: GoogleFonts.bubblegumSans(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         
         // Card Theme
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: AppColors.white,
           elevation: 5,
           shape: RoundedRectangleBorder(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:google_fonts/google_fonts.dart';
 
 class PronunciationScreen extends StatefulWidget {
   const PronunciationScreen({super.key});
@@ -85,9 +86,9 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xFF0B57CF),
         elevation: 0,
-        title: const Text(
+        title: Text(
           "Prononciation",
-          style: TextStyle(color: Colors.white),
+          style: GoogleFonts.bubblegumSans(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -98,10 +99,10 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   "Module de prononciation bilingue 🇫🇷 / 🇬🇧",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.bubblegumSans(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -112,7 +113,7 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
                 // 📝 Champ de texte
                 TextField(
                   controller: _controller,
-                  style: const TextStyle(fontSize: 18, color: Colors.black87),
+                  style: GoogleFonts.bubblegumSans(fontSize: 18, color: Colors.black87),
                   decoration: InputDecoration(
                     hintText: "Entre un mot à prononcer...",
                     filled: true,
@@ -179,7 +180,7 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
                     _isSpeaking
                         ? "Lecture en cours..."
                         : "Écouter la prononciation",
-                    style: const TextStyle(
+                    style: GoogleFonts.bubblegumSans(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -210,7 +211,7 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
                   ),
                   label: Text(
                     _isListening ? "Arrêter" : "Essayer ta prononciation 🎤",
-                    style: const TextStyle(
+                    style: GoogleFonts.bubblegumSans(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -231,9 +232,9 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
                     ),
                     child: Column(
                       children: [
-                        const Text(
+                        Text(
                           "🗣️ Tu as dit :",
-                          style: TextStyle(
+                          style: GoogleFonts.bubblegumSans(
                             fontWeight: FontWeight.w600,
                             fontSize: 16,
                             color: Colors.black54,
@@ -242,7 +243,7 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
                         const SizedBox(height: 8),
                         Text(
                           _recognizedText,
-                          style: const TextStyle(
+                          style: GoogleFonts.bubblegumSans(
                             fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.black87,
@@ -252,10 +253,10 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
                     ),
                   ),
                 const SizedBox(height: 20),
-                const Text(
+                Text(
                   "Entraîne-toi à parler et à écouter\npour améliorer ton accent 🎧🎙️",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.bubblegumSans(
                     color: Colors.white,
                     fontSize: 16,
                     height: 1.4,

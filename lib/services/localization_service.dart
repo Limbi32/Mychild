@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LocalizationService extends Translations {
@@ -43,6 +44,20 @@ class LocalizationService extends Translations {
       'settings': 'Paramètres',
       'back': 'Retour',
       'close': 'Fermer',
+      
+      // Settings Screen
+      'language': 'Langue',
+      'choose_language': 'Choisir la langue',
+      'language_changed': 'Langue changée avec succès',
+      'activation': 'Activation',
+      'activated': 'Activé',
+      'your_key': 'Votre clé',
+      'lifetime_access': 'Accès à vie - Aucun abonnement requis',
+      'about': 'À propos',
+      'version': 'Version',
+      'mode': 'Mode',
+      'offline_mode': 'Hors ligne',
+      'modules': 'Modules',
     },
     'en_US': {
       // Welcome Screen
@@ -77,6 +92,20 @@ class LocalizationService extends Translations {
       'settings': 'Settings',
       'back': 'Back',
       'close': 'Close',
+      
+      // Settings Screen
+      'language': 'Language',
+      'choose_language': 'Choose language',
+      'language_changed': 'Language changed successfully',
+      'activation': 'Activation',
+      'activated': 'Activated',
+      'your_key': 'Your key',
+      'lifetime_access': 'Lifetime access - No subscription required',
+      'about': 'About',
+      'version': 'Version',
+      'mode': 'Mode',
+      'offline_mode': 'Offline',
+      'modules': 'Modules',
     },
   };
 }
