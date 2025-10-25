@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/activation_service.dart';
 import 'home_screen.dart';
 import 'key_generator_screen.dart';
@@ -16,7 +17,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   final TextEditingController keyController = TextEditingController();
   final ActivationService activationService = ActivationService();
   bool _isValidating = false;
-  String _selectedLanguage = 'Français';
 
   void _validateKey() async {
     String enteredKey = keyController.text.trim();
@@ -120,7 +120,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   // Learn, Speak & Grow
                   Text(
                     'learn_speak_grow'.tr,
-                    style: const TextStyle(
+                    style: GoogleFonts.bubblegumSans(
                       color: Colors.white,
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
@@ -128,29 +128,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   
-                  const SizedBox(height: 35),
-                  
-                  // Bouton Français
-                  _buildLanguageButton(
-                    'french'.tr,
-                    'assets/france.png',
-                    const Color(0xFF3498DB),
-                    _selectedLanguage == 'Français',
-                    const Locale('fr', 'FR'),
-                  ),
-                  
-                  const SizedBox(height: 12),
-                  
-                  // Bouton English
-                  _buildLanguageButton(
-                    'english'.tr,
-                    'assets/anglais.jpeg',
-                    const Color(0xFFE67E22),
-                    _selectedLanguage == 'English',
-                    const Locale('en', 'US'),
-                  ),
-                  
-                  const SizedBox(height: 35),
+                  const SizedBox(height: 50),
                   
                   // Carte d'activation blanche
                   Container(
@@ -188,8 +166,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             const SizedBox(width: 12),
                             Text(
                               'activate_with_key'.tr,
-                              style: const TextStyle(
-                                color: Color(0xFF3498DB),
+                              style: GoogleFonts.bubblegumSans(
+                                color: const Color(0xFF3498DB),
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -229,7 +207,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                       fontSize: 14,
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 15),
+                                  style: GoogleFonts.bubblegumSans(fontSize: 15),
                                 ),
                               ),
                             ),
@@ -274,7 +252,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                         )
                                       : Text(
                                           'validate'.tr,
-                                          style: const TextStyle(
+                                          style: GoogleFonts.bubblegumSans(
                                             color: Colors.white,
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
@@ -295,7 +273,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Text(
                     'key_valid_lifetime'.tr,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: GoogleFonts.bubblegumSans(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -306,7 +284,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   Text(
                     'no_subscription'.tr,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: GoogleFonts.bubblegumSans(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -319,79 +297,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLanguageButton(
-    String text,
-    String flagPath,
-    Color color,
-    bool isSelected,
-    Locale locale,
-  ) {
-    return InkWell(
-      onTap: () {
-        Get.updateLocale(locale);
-        setState(() {
-          _selectedLanguage = text;
-        });
-      },
-      child: Container(
-        width: double.infinity,
-        height: 55,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(12),
-          border: isSelected
-              ? Border.all(color: Colors.white, width: 3)
-              : null,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Drapeau
-            Container(
-              width: 40,
-              height: 28,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 4,
-                  ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.asset(
-                  flagPath,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            
-            const SizedBox(width: 15),
-            
-            // Texte
-            Text(
-              text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
         ),
       ),
     );

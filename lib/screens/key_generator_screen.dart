@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/activation_service.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:google_fonts/google_fonts.dart';
 
 class KeyGeneratorScreen extends StatefulWidget {
   const KeyGeneratorScreen({super.key});
@@ -159,12 +160,12 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
     if (kIsWeb) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Générateur de clés'),
+          title: Text('Générateur de clés'),
           backgroundColor: Colors.blue,
         ),
-        body: const Center(
+        body: Center(
           child: Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Text(
               '⚠️ SQLite n\'est pas supporté sur le web.\n\n'
               'Veuillez lancer l\'application sur:\n'
@@ -172,7 +173,7 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
               '• Android (flutter run -d android)\n'
               '• iOS (flutter run -d ios)',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+              style: GoogleFonts.bubblegumSans(fontSize: 16),
             ),
           ),
         ),
@@ -204,9 +205,9 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             '📊 Statistiques',
-                            style: TextStyle(
+                            style: GoogleFonts.bubblegumSans(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -214,7 +215,7 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                           const SizedBox(height: 20),
                           Text(
                             'Clés restantes: $_remainingKeys',
-                            style: const TextStyle(
+                            style: GoogleFonts.bubblegumSans(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
                               color: Colors.blue,
@@ -224,7 +225,7 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                             const SizedBox(height: 10),
                             Text(
                               'Clé utilisée: $_usedKey',
-                              style: const TextStyle(
+                              style: GoogleFonts.bubblegumSans(
                                 fontSize: 14,
                                 color: Colors.grey,
                               ),
@@ -238,9 +239,9 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                   const SizedBox(height: 20),
 
                   // Boutons de génération
-                  const Text(
+                  Text(
                     '🔑 Générer des clés',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.bubblegumSans(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
 
@@ -272,7 +273,7 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                   ElevatedButton.icon(
                     onPressed: _isGenerating ? null : _resetActivation,
                     icon: const Icon(Icons.refresh),
-                    label: const Text('Réinitialiser l\'activation'),
+                    label: Text('Réinitialiser l\'activation'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.grey,
                       padding: const EdgeInsets.all(15),
@@ -282,9 +283,9 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                   // Clés générées récemment
                   if (_generatedKeys.isNotEmpty) ...[
                     const SizedBox(height: 30),
-                    const Text(
+                    Text(
                       '📋 Dernières clés générées',
-                      style: TextStyle(
+                      style: GoogleFonts.bubblegumSans(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -302,8 +303,7 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
                                     ),
                                     child: SelectableText(
                                       key,
-                                      style: const TextStyle(
-                                        fontFamily: 'monospace',
+                                      style: GoogleFonts.robotoMono(
                                         fontSize: 14,
                                       ),
                                     ),
@@ -316,14 +316,14 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
 
                   if (_isGenerating) ...[
                     const SizedBox(height: 30),
-                    const Center(
+                    Center(
                       child: Column(
                         children: [
-                          CircularProgressIndicator(),
-                          SizedBox(height: 15),
+                          const CircularProgressIndicator(),
+                          const SizedBox(height: 15),
                           Text(
                             'Génération en cours...',
-                            style: TextStyle(fontSize: 16),
+                            style: GoogleFonts.bubblegumSans(fontSize: 16),
                           ),
                         ],
                       ),
@@ -344,7 +344,7 @@ class _KeyGeneratorScreenState extends State<KeyGeneratorScreen> {
       ),
       child: Text(
         'Générer $label',
-        style: const TextStyle(fontSize: 16),
+        style: GoogleFonts.bubblegumSans(fontSize: 16),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'sign_detail_screen.dart'; // <-- importe la nouvelle page
+import 'package:google_fonts/google_fonts.dart';
 
 class SignLanguageScreen extends StatelessWidget {
   const SignLanguageScreen({super.key});
@@ -19,9 +20,9 @@ class SignLanguageScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             // 🔹 Titre
-            const Text(
+            Text(
               "Alphabet des signes",
-              style: TextStyle(
+              style: GoogleFonts.bubblegumSans(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -95,10 +96,12 @@ class SignLanguageScreen extends StatelessWidget {
                                 errorBuilder: (context, error, stackTrace) =>
                                     Container(
                                       color: Colors.grey[200],
-                                      child: const Icon(
-                                        Icons.image_not_supported,
-                                        color: Colors.grey,
-                                        size: 40,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(16),
+                                        child: Image.asset(
+                                          'assets/logo.jpeg',
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                               ),
@@ -107,7 +110,7 @@ class SignLanguageScreen extends StatelessWidget {
                           const SizedBox(height: 8),
                           Text(
                             letter,
-                            style: const TextStyle(
+                            style: GoogleFonts.bubblegumSans(
                               fontSize: 22,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
@@ -122,10 +125,10 @@ class SignLanguageScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 16),
-            const Text(
+            Text(
               "Bienvenue dans\nl’univers éducatif universel",
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.bubblegumSans(
                 color: Colors.white,
                 fontSize: 16,
                 height: 1.4,

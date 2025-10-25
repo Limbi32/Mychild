@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignDetailScreen extends StatelessWidget {
   final String letter;
@@ -21,7 +22,7 @@ class SignDetailScreen extends StatelessWidget {
         elevation: 0,
         title: Text(
           "Lettre $letter",
-          style: const TextStyle(color: Colors.white),
+          style: GoogleFonts.bubblegumSans(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -40,11 +41,16 @@ class SignDetailScreen extends StatelessWidget {
                   errorBuilder: (context, error, stackTrace) => Container(
                     height: 200,
                     width: 200,
-                    color: Colors.grey[200],
-                    child: const Icon(
-                      Icons.image_not_supported,
-                      color: Colors.grey,
-                      size: 60,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.asset(
+                        'assets/logo.jpeg',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -70,7 +76,7 @@ class SignDetailScreen extends StatelessWidget {
             child: Text(
               description,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: GoogleFonts.bubblegumSans(
                 fontSize: 16,
                 color: Colors.black87,
                 height: 1.5,

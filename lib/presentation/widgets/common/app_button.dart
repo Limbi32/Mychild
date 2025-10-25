@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Bouton réutilisable style My Child
 class AppButton extends StatelessWidget {
@@ -54,12 +55,12 @@ class AppButton extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (icon != null) ...[
-                        Text(icon!, style: const TextStyle(fontSize: 24)),
+                        Text(icon!, style: GoogleFonts.bubblegumSans(fontSize: 24)),
                         const SizedBox(width: 12),
                       ],
                       Text(
                         label,
-                        style: TextStyle(
+                        style: GoogleFonts.bubblegumSans(
                           color: textColor ?? AppColors.accentBlue,
                           fontSize: fontSize ?? 18,
                           fontWeight: FontWeight.w600,
@@ -121,7 +122,7 @@ class AppGradientButton extends StatelessWidget {
                 )
               : Text(
                   label,
-                  style: const TextStyle(
+                  style: GoogleFonts.bubblegumSans(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,

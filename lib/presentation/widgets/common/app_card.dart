@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/constants/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Carte réutilisable style My Child
 class AppCard extends StatelessWidget {
@@ -64,14 +65,14 @@ class AppTitleCard extends StatelessWidget {
                   ),
                   child: Text(
                     icon!,
-                    style: const TextStyle(fontSize: 24),
+                    style: GoogleFonts.bubblegumSans(fontSize: 24),
                   ),
                 ),
                 const SizedBox(width: 12),
               ],
               Text(
                 title,
-                style: const TextStyle(
+                style: GoogleFonts.bubblegumSans(
                   color: AppColors.accentBlue,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

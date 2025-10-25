@@ -78,5 +78,6 @@ flutter:
     - assets/retouch_2025101508360788.jpg
     - assets/moralite/
     - assets/signs/
+    - assets/CLES_TEST.txt
     # Base de données avec les clés d'activation (optionnel pour le web)
     # - assets/activation_keys.db

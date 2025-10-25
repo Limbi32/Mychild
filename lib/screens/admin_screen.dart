@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/activation_service.dart';
 import '../utils/key_generator.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AdminScreen extends StatefulWidget {
   const AdminScreen({super.key});
@@ -83,9 +84,9 @@ class _AdminScreenState extends State<AdminScreen> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             'Statistiques',
-                            style: TextStyle(
+                            style: GoogleFonts.bubblegumSans(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -93,13 +94,13 @@ class _AdminScreenState extends State<AdminScreen> {
                           const SizedBox(height: 20),
                           Text(
                             'Clés restantes: $_remainingKeys',
-                            style: const TextStyle(fontSize: 18),
+                            style: GoogleFonts.bubblegumSans(fontSize: 18),
                           ),
                           if (_usedKey != null) ...[
                             const SizedBox(height: 10),
                             Text(
                               'Clé utilisée: $_usedKey',
-                              style: const TextStyle(
+                              style: GoogleFonts.bubblegumSans(
                                 fontSize: 14,
                                 color: Colors.grey,
                               ),
@@ -110,9 +111,9 @@ class _AdminScreenState extends State<AdminScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     'Générer des clés',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.bubblegumSans(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton(
