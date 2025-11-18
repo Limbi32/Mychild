@@ -20,6 +20,7 @@ dependencies:
   # Pour stockage local clé d'activation
   shared_preferences: ^2.2.2
   sqflite: ^2.3.3
+  sqflite_common_ffi: ^2.3.4
   path_provider: ^2.1.2
 
   # Pour navigation et gestion simple des routes

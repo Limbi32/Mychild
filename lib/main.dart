@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:io' show Platform;
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'screens/welcome_screen.dart';
 import 'screens/home_screen.dart';
 import 'services/activation_service.dart';
@@ -15,7 +17,13 @@ import 'core/constants/colors.dart';
 /// Application 100% HORS LIGNE - Aucune connexion Internet requise
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
+  // Initialisation de SQLite pour les plateformes desktop
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+
   // Initialisation des services hors ligne
   await _initServices();
   

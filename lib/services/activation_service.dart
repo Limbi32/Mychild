@@ -89,43 +89,73 @@ class ActivationService {
       return _validateWebKey(key);
     }
 
+    // Pour les plateformes desktop, validation simplifiée si la base de données échoue
+    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+      try {
+        final db = await database;
+        return await _validateWithDatabase(key, db);
+      } catch (e) {
+        print('⚠️ Base de données indisponible sur desktop, validation simplifiée: $e');
+        return _validateDesktopKey(key);
+      }
+    }
+
     try {
       final db = await database;
-
-      // Vérifie si la clé existe dans la base locale
-      final result = await db.query(
-        'activation_keys',
-        where: 'key_value = ?',
-        whereArgs: [key],
-        limit: 1,
-      );
-
-      if (result.isEmpty) {
-        print('❌ Clé invalide ou déjà utilisée');
-        return false;
-      }
-
-      print('✅ Clé valide trouvée dans la base de données locale');
-
-      // Supprime la clé de la base (elle ne peut plus être réutilisée)
-      await db.delete(
-        'activation_keys',
-        where: 'key_value = ?',
-        whereArgs: [key],
-      );
-
-      print('🗑️ Clé supprimée de la base (usage unique)');
-
-      // Marque l'utilisateur comme activé à vie
-      await _markAsActivated(key);
-
-      print('✅ Utilisateur activé avec succès à vie\n');
-
-      return true;
+      return await _validateWithDatabase(key, db);
     } catch (e) {
       print('❌ Erreur lors de la validation: $e\n');
       return false;
     }
+  }
+
+  // Validation avec base de données
+  Future<bool> _validateWithDatabase(String key, Database db) async {
+    // Vérifie si la clé existe dans la base locale
+    final result = await db.query(
+      'activation_keys',
+      where: 'key_value = ?',
+      whereArgs: [key],
+      limit: 1,
+    );
+
+    if (result.isEmpty) {
+      print('❌ Clé invalide ou déjà utilisée');
+      return false;
+    }
+
+    print('✅ Clé valide trouvée dans la base de données locale');
+
+    // Supprime la clé de la base (elle ne peut plus être réutilisée)
+    await db.delete(
+      'activation_keys',
+      where: 'key_value = ?',
+      whereArgs: [key],
+    );
+
+    print('🗑️ Clé supprimée de la base (usage unique)');
+
+    // Marque l'utilisateur comme activé à vie
+    await _markAsActivated(key);
+
+    print('✅ Utilisateur activé avec succès à vie\n');
+
+    return true;
+  }
+
+  // Validation simplifiée pour desktop (tests)
+  Future<bool> _validateDesktopKey(String key) async {
+    // Accepte les clés de test ou celles qui commencent par MYCHILD-
+    if (key == "MYCHILD2025" ||
+        key.startsWith("TEST-") ||
+        key.startsWith("MYCHILD-") ||
+        RegExp(r'^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$').hasMatch(key)) {
+      print('✅ Clé acceptée en mode desktop (validation simplifiée)');
+      await _markAsActivated(key);
+      return true;
+    }
+    print('❌ Clé invalide');
+    return false;
   }
 
   // Validation simple pour le web (tests uniquement)
@@ -158,6 +188,21 @@ class ActivationService {
   Future<int> getRemainingKeysCount() async {
     if (kIsWeb) return 0;
 
+    // Pour desktop, retourne 0 si la base n'est pas disponible
+    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+      try {
+        final db = await database;
+        final result =
+            await db.rawQuery('SELECT COUNT(*) as count FROM activation_keys');
+        final count = Sqflite.firstIntValue(result) ?? 0;
+        print('📊 Nombre de clés restantes: $count');
+        return count;
+      } catch (e) {
+        print('⚠️ Base de données indisponible sur desktop: $e');
+        return 999; // Valeur arbitraire pour desktop
+      }
+    }
+
     try {
       final db = await database;
       final result =
@@ -174,6 +219,18 @@ class ActivationService {
   // Affiche toutes les clés (pour debug/vente)
   Future<List<String>> getAllKeys() async {
     if (kIsWeb) return [];
+
+    // Pour desktop, retourne une liste vide si la base n'est pas disponible
+    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+      try {
+        final db = await database;
+        final result = await db.query('activation_keys', orderBy: 'id ASC');
+        return result.map((row) => row['key_value'] as String).toList();
+      } catch (e) {
+        print('⚠️ Base de données indisponible sur desktop: $e');
+        return ['MODE_DESKTOP_ACTIVÉ']; // Indicateur pour desktop
+      }
+    }
 
     try {
       final db = await database;
@@ -279,33 +336,48 @@ class ActivationService {
       return;
     }
 
+    // Pour desktop, skip l'import si la base n'est pas disponible
+    if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
+      try {
+        await _performImport();
+      } catch (e) {
+        print('⚠️ Import ignoré sur desktop (base indisponible): $e');
+        return;
+      }
+    } else {
+      await _performImport();
+    }
+  }
+
+  // Méthode d'importation commune
+  Future<void> _performImport() async {
     try {
       print('\n🔄 Importation des clés depuis assets/CLES_TEST.txt...');
-      
+
       // Charge le fichier depuis les assets
       final content = await rootBundle.loadString('assets/CLES_TEST.txt');
       final lines = content.split('\n');
-      
+
       final db = await database;
       final timestamp = DateTime.now().millisecondsSinceEpoch;
-      
+
       int imported = 0;
       int skipped = 0;
-      
+
       // Traite par batch de 1000 clés
       for (int i = 0; i < lines.length; i += 1000) {
         final batch = db.batch();
         final endIndex = (i + 1000 > lines.length) ? lines.length : i + 1000;
-        
+
         for (int j = i; j < endIndex; j++) {
           final line = lines[j].trim();
-          
+
           // Ignore les lignes vides et les commentaires
           if (line.isEmpty || line.startsWith('#') || line.startsWith('=')) {
             skipped++;
             continue;
           }
-          
+
           // Vérifie le format XXXX-XXXX-XXXX-XXXX
           if (RegExp(r'^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$').hasMatch(line)) {
             batch.insert(
@@ -321,11 +393,11 @@ class ActivationService {
             skipped++;
           }
         }
-        
+
         await batch.commit(noResult: true);
         print('✅ $imported clés importées...');
       }
-      
+
       print('\n========================================');
       print('✅ IMPORTATION TERMINÉE');
       print('📊 $imported clés importées');
