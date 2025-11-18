@@ -1,9 +1,10 @@
+import 'dart:io';
 import 'package:get/get.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 /// Service de reconnaissance vocale - Fonctionne hors ligne si voix téléchargées
 class SpeechRecognitionService extends GetxService {
-  late stt.SpeechToText _speech;
+  late stt.SpeechToText? _speech;
   
   final RxBool isListening = false.obs;
   final RxBool isAvailable = false.obs;
@@ -13,16 +14,22 @@ class SpeechRecognitionService extends GetxService {
   bool _isInitializing = false;
   
   Future<SpeechRecognitionService> init() async {
-    _speech = stt.SpeechToText();
-    await _checkAvailability();
+    if (Platform.isAndroid || Platform.isIOS) {
+      _speech = stt.SpeechToText();
+      await _checkAvailability();
+    } else {
+      isAvailable.value = false;
+    }
     return this;
   }
   
   Future<void> _checkAvailability() async {
-    isAvailable.value = await _speech.initialize(
-      onStatus: _onStatus,
-      onError: _onError,
-    );
+    if (_speech != null) {
+      isAvailable.value = await _speech!.initialize(
+        onStatus: _onStatus,
+        onError: _onError,
+      );
+    }
   }
   
   void _onStatus(String status) {
@@ -46,30 +53,37 @@ class SpeechRecognitionService extends GetxService {
     if (isListening.value || _isInitializing) return;
     
     if (!isAvailable.value) {
-      _isInitializing = true;
-      isAvailable.value = await _speech.initialize(
-        onStatus: _onStatus,
-        onError: _onError,
-      );
-      _isInitializing = false;
+      if (_speech != null) {
+        _isInitializing = true;
+        isAvailable.value = await _speech!.initialize(
+          onStatus: _onStatus,
+          onError: _onError,
+        );
+        _isInitializing = false;
+      }
     }
     
     if (!isAvailable.value) {
-      Get.snackbar('Erreur', 'Microphone non disponible');
+      String message = (Platform.isAndroid || Platform.isIOS)
+          ? 'Microphone non disponible'
+          : 'La reconnaissance vocale n\'est pas supportée sur cette plateforme';
+      Get.snackbar('Erreur', message);
       return;
     }
     
     recognizedText.value = '';
     
-    await _speech.listen(
-      localeId: localeId ?? currentLocale.value,
-      onResult: (result) {
-        recognizedText.value = result.recognizedWords;
-        if (onResult != null) {
-          onResult(result.recognizedWords);
-        }
-      },
-    );
+    if (_speech != null) {
+      await _speech!.listen(
+        localeId: localeId ?? currentLocale.value,
+        onResult: (result) {
+          recognizedText.value = result.recognizedWords;
+          if (onResult != null) {
+            onResult(result.recognizedWords);
+          }
+        },
+      );
+    }
   }
   
   /// Écouter en français
@@ -84,21 +98,25 @@ class SpeechRecognitionService extends GetxService {
   
   /// Arrêter l'écoute
   Future<void> stopListening() async {
-    await _speech.stop();
+    if (_speech != null) {
+      await _speech!.stop();
+    }
     isListening.value = false;
   }
-  
+
   /// Annuler l'écoute
   Future<void> cancelListening() async {
-    await _speech.cancel();
+    if (_speech != null) {
+      await _speech!.cancel();
+    }
     isListening.value = false;
     recognizedText.value = '';
   }
-  
+
   /// Obtenir les locales disponibles
   Future<List<stt.LocaleName>> getLocales() async {
-    if (!isAvailable.value) return [];
-    return await _speech.locales();
+    if (!isAvailable.value || _speech == null) return [];
+    return await _speech!.locales();
   }
   
   @override

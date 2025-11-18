@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -37,6 +38,15 @@ class _PronunciationScreenState extends State<PronunciationScreen> {
   // 🎤 Reconnaissance vocale
   Future<void> _listen() async {
     if (_isListening || _isInitializing) return;
+
+    if (!(Platform.isAndroid || Platform.isIOS)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('La reconnaissance vocale n\'est pas supportée sur cette plateforme'),
+        ),
+      );
+      return;
+    }
 
     _isInitializing = true;
     bool available = await speech.initialize(
